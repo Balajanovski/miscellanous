@@ -7,7 +7,6 @@ using std::string; using std::vector;
 const string str_add(const string &x_const, const string &y_const);
 
 string str_mult(const string &x, const string &y) {
-  //std::cout << x << ' ' << y << std::endl;
   auto iter1 = x.rbegin();
 
   vector<string> num; // Holds all the numbers before the addition step is done
@@ -39,12 +38,6 @@ string str_mult(const string &x, const string &y) {
     num.push_back(temp);
     ++padding_count;
   }
-  /*temp.clear();
-  if (carry > 0)
-    temp.insert(0, 1, (carry + '0'));
-  for (int i = 0; i < padding_count; ++i)
-    temp += '0';
-  num.push_back(temp);*/
 
   string str_product;
   for (auto iter = num.begin(); iter != num.end(); ++iter) {
@@ -73,7 +66,6 @@ void balance_str(string &x, string &y) {
 const string str_add(const string &x_const, const string &y_const) {
   string x = x_const; // Create copies
   string y = y_const; // of the arguments
-  //std::cout << "Add: " << x << ' ' << y << std::endl;
   balance_str(x, y); // Pad the strings with zeros if necessary
 
   auto iter1 = x.rbegin(); // Initialise iterators
@@ -101,8 +93,7 @@ const string str_add(const string &x_const, const string &y_const) {
     }
     else
       break;
-  }
-  //std::cout << str_sum << std::endl;
+  
 
   return str_sum;
 }
@@ -115,7 +106,6 @@ const string str_subtract(const string &x_const, const string &y_const) {
   auto iter2 = y.rbegin(); // for the loops
   int carry = 0; // The carry on digit
 
-  //std::cout << "In add : " << std::flush;
   string str_diff; // The string to be returned
 
   for (; iter1 != x.rend() && iter2 != y.rend(); ++iter1, ++iter2) {
@@ -142,7 +132,6 @@ const string str_subtract(const string &x_const, const string &y_const) {
 
 // Karatsuba method
 string multiply(const string &x, const string &y) {
-  //std::cout << x << ' ' << y << '\n' << std::endl;
   if (x.length() < 2 || y.length() < 2) // Base case
     return str_mult(x, y);
   unsigned n = ((x.length() >= y.length()) ? x.length() : y.length())/2; // Init n
