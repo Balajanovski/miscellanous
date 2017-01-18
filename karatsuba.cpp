@@ -6,11 +6,6 @@ using std::string; using std::vector;
 
 const string str_add(const string &x_const, const string &y_const);
 
-/*string str_mult(const string &x, const string &y) {
-  string product = std::to_string(std::stol(x) * std::stol(y));
-  return product;
-}*/
-
 string str_mult(const string &x, const string &y) {
   //std::cout << x << ' ' << y << std::endl;
   auto iter1 = x.rbegin();
@@ -134,8 +129,6 @@ const string str_subtract(const string &x_const, const string &y_const) {
     str_diff.insert(0, 1, (diff + '0'));
   }
 
-  //std::cout << "Out of add" << std::endl;
-
   for (auto iter = str_diff.begin(); iter != str_diff.end()-1; ++iter) {
     if (*iter == '0') {
       str_diff.erase(iter);
@@ -147,6 +140,7 @@ const string str_subtract(const string &x_const, const string &y_const) {
   return str_diff;
 }
 
+// Karatsuba method
 string multiply(const string &x, const string &y) {
   //std::cout << x << ' ' << y << '\n' << std::endl;
   if (x.length() < 2 || y.length() < 2) // Base case
@@ -163,12 +157,6 @@ string multiply(const string &x, const string &y) {
   c = y.substr(0, halfPt);
   d = y.substr(halfPt);
 
-  //std::cout << "A: " << a << " B: " << b << "\nC: " << c << " D: " << d << std::endl;
-  //std::cout << x << ' ' << y << std::endl;
-
-  //std::cout << "P: " << p << std::endl;
-  //std::cout << "N: " << n << std::endl;
-
   string ac = multiply(a, c); // Init ac through recursion
   string bd = multiply(b, d); // Init bd through recursion
   string abcd = str_subtract(str_subtract(multiply(str_add(a,b), str_add(c,d)), ac), bd);
@@ -183,8 +171,5 @@ int main () {
   string x, y;
   std::cin >> x >> y;
   std::cout << '\n' << multiply(x, y) << std::endl;
-  //std::cout << str_mult(x, y) << std::endl;
-  //std::cout << str_add(x,y) << std::endl;
-  //std::cout << str_subtract(x, y) << std::endl;
   return 0;
 }
